@@ -3,7 +3,7 @@
 Plugin Name: Indeed Job Importer
 Plugin URI: http://wordpress.org/extend/plugins/indeed-job-importer/
 Description: Indeed Job Importer Plugin Import job from indeed according to your given parameter.,post in relevant category,makes autoblogging
-Version: 1.2
+Version: 1.0
 Author: Shambhu Prasad Patnaik
 Author URI:http://aynsoft.com/
 */
