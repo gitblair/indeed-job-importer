@@ -52,8 +52,8 @@ Indeed Job Importer Plugin Import job from indeed according to your given parame
 
 == Screenshots ==
 
-1. screenshot-1.png  : screen shot admin indeed job importer add section
-2. screenshot-2.png  : screen shot admin indeed job importer list.
+1. screenshot1.png  : screen shot admin indeed job importer add section
+2. screenshot2.png  : screen shot admin indeed job importer list.
 
 
 == Changelog ==
