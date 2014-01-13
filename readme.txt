@@ -1,7 +1,7 @@
 === Indeed Job Importer ===
 Contributors: shambhu patnaik
 Donate link: http://aynsoft.com/
-Tags: indeed job importer,indeed rss,import indeed,indeed,makes autoblogging,autoblogging,job board,auto job import
+Tags: indeed job importer,indeed rss,import indeed,indeed,makes autoblogging,autoblogging,job board,auto job import,indeed api,indeed importer
 Requires at least: 2.9
 Tested up to: 3.8
 Stable tag: 1.0
@@ -22,6 +22,8 @@ Indeed Job Importer Plugin Import job from indeed according to your given parame
 5. Custom template option.
 6. Set cron option.
 7. Multiple Indeed account data import
+
+More detail : http://socialcms.wordpress.com/
 
 
 == Installation ==
