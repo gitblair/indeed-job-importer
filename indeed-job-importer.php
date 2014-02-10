@@ -3,7 +3,7 @@
 Plugin Name: Indeed Job Importer
 Plugin URI: http://wordpress.org/extend/plugins/indeed-job-importer/
 Description: Indeed Job Importer Plugin Import job from indeed according to your given parameter.,post in relevant category,makes autoblogging
-Version: 1.0
+Version: 1.0.1
 Author: Shambhu Prasad Patnaik
 Author URI:http://aynsoft.com/
 */
@@ -42,7 +42,6 @@ function indeed_job_importer_list()
       <div class="wrap" >
        <h2>Indeed Job Importer <a href="'.admin_url('admin.php?page=indeed_job_importer').'" class="add-new-h2">Add New</a></h2></div>
 		     <p class="intro">Indeed Job Importer Plugin Import job from indeed according to your given parameter.</p>
-
        <div align="right" class="sca_current_time">Current Time: <b>'.indeed_job_importer_formate_date(current_time('mysql')).'</b></div>
       <table border="0" width="97%" cellspacing="1" cellpadding="2" class="middle_table1">
        <tr>
@@ -95,7 +94,26 @@ function indeed_job_importer_list()
  }
  echo'</table></td>
        </tr>
-      </table></div>';
+      </table>
+ <br>
+	<div><h3 class="indeed_heading">Other Related Plugin</h3>
+		<ul class="indeed_help_square">
+		 <li><a href="http://socialcms.wordpress.com/contact-us/" target="_blank">Pro Indeed Job Importer (premium version)</a></li>
+		 <li><a href="http://wordpress.org/plugins/juju-job-importer/" target="_blank">Juju Job Importer</a></li>
+		 <li><a href="http://socialcms.wordpress.com/2014/01/21/careerbuilder-job-importer/" target="_blank">CareerBuilder Job Importer</a></li>
+		 <li><a href="http://socialcms.wordpress.com/2014/02/07/careerjet-job-importer/" target="_blank">CareerJet Job Importer</a></li>
+		 <li><a href="http://socialcms.wordpress.com/category/job-board-2/" target="_blank">Job Board</a></li>
+		<ul>
+	</div>
+		<br>
+
+	<div>More Detail - <a href="http://socialcms.wordpress.com/" target="_blank">http://socialcms.wordpress.com</a></div>
+	<div>In case of any clarifications, pl. contact us at - <a href="http://socialcms.wordpress.com/contact-us/" target="_blank">http://socialcms.wordpress.com/contact-us/</a></div>
+	<br>
+	<div><b>Thanks a Lot</b></div>
+	<br>
+	<br>
+    <div align="center">********************</div>		   </div>';
 
 }
 endif;
@@ -175,7 +193,7 @@ function indeed_job_importer()
     $wp_category     = wp_filter_nohtml_kses($_POST['category']);
     $run_every       = wp_filter_nohtml_kses($_POST['IR_run_every']);
     $occurrence_type = wp_filter_nohtml_kses($_POST['occurrence_type']);
-    $display_template= wp_filter_nohtml_kses($_POST['display_template']);
+    $display_template= stripslashes_deep($_POST['display_template']);
     $error=false;			
     if($campaign_name=='')
     {
@@ -288,7 +306,7 @@ function indeed_job_importer()
   $wp_category     = wp_filter_nohtml_kses($result->wp_category);
   $run_every       = wp_filter_nohtml_kses($result->occurrence);
   $occurrence_type = wp_filter_nohtml_kses($result->occurrence_type);
-  $display_template= stripslashes($result->template_format);
+  $display_template= stripslashes_deep($result->template_format);
  }
  elseif($error)
  {
@@ -332,7 +350,6 @@ function indeed_job_importer()
 
  echo '<div >
     <div class="wrap">
-	<div style="float:right;padding-right:15px;"><a href="http://wpnova.com/" target="_blank"><img src="'.plugins_url('img/logo.gif', __FILE__).'"></a></div>
 	<h2>Indeed Job Importer</h2></div>
  '.
  ((is_array($error_message)&& count($error_message)>0)?' <div class="error"><p>'.implode("<br>",$error_message).'</p></div>':'').'
