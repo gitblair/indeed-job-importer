@@ -1,6 +1,6 @@
 === Indeed Job Importer ===
 Contributors: shambhu patnaik
-Donate link: http://aynsoft.com/
+Donate link: http://socialcms.wordpress.com/
 Tags: indeed job importer,indeed rss,import indeed,indeed,makes autoblogging,autoblogging,job board,auto job import,indeed api,indeed importer
 Requires at least: 2.9
 Tested up to: 3.9
