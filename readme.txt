@@ -3,8 +3,8 @@ Contributors: shambhu patnaik
 Donate link: http://socialcms.wordpress.com/
 Tags: indeed job importer,indeed rss,import indeed,indeed,makes autoblogging,autoblogging,job board,auto job import,indeed api,indeed importer
 Requires at least: 2.9
-Tested up to: 3.9
-Stable tag: 1.0.1
+Tested up to: 3.9.2
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,7 +60,11 @@ More detail : http://socialcms.wordpress.com/
 
 == Changelog ==
 
-= 1.1 =
+= 1.0.2 =
+* Fix WPMU cron error
+* improve duplicate job check
+
+= 1.0.1 =
 * Add html tag support in Display Template
 
 = 1.0 =

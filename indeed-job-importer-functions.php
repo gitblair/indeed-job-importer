@@ -94,6 +94,7 @@ function indeed_job_importer_country_list()
  $country_list[]=array('id'=>'nl','text'=>'Netherlands');
  $country_list[]=array('id'=>'nz','text'=>'New Zealand');
  $country_list[]=array('id'=>'pk','text'=>'Pakistan');
+ $country_list[]=array('id'=>'qa','text'=>'Qatar');
  $country_list[]=array('id'=>'sa','text'=>'Saudi Arabia');
  $country_list[]=array('id'=>'sg','text'=>'Singapore');
  $country_list[]=array('id'=>'za','text'=>'South Africa');
@@ -194,19 +195,26 @@ function indeed_job_importer_feed_import($feed_ids='',$current_time='')
  global $wpdb;
  $indeed_job_importer_dbtable = $wpdb->base_prefix . "indeed_job_importer";	
  $add_whereClause='';
- $blog_id = get_current_blog_id();
- $add_whereClause=" and  y.blog_id = '".$blog_id."' ";
 
  if($feed_ids!='')
- $add_whereClause=" and  y.feed_id in (".$feed_ids.") ";
+ $add_whereClause.=" and  y.feed_id in (".$feed_ids.") ";
 
  if($current_time!='')
- $add_whereClause=" and  y.next_activate <= '".$wpdb->escape($current_time)."'";
+ $add_whereClause.=" and  y.next_activate <= '".$wpdb->escape($current_time)."'";
  
  $query = "select y.* from ".$indeed_job_importer_dbtable."  as y  where y.status='active' $add_whereClause   order by y.feed_id";
  $records = $wpdb->get_results($query,'ARRAY_A');
  foreach ($records as $row)
  {
+  $blog_id          = wp_filter_nohtml_kses($row['blog_id']);
+  $switch = false;
+  if (function_exists('is_multisite') && is_multisite())
+  {
+   if ( get_current_blog_id() != $blog_id ) {
+    $switch = true;
+    switch_to_blog( $blog_id );
+   }
+  }
   $publisher_id     = wp_filter_nohtml_kses($row['publisher_id']);
   $feed_keyword     = wp_filter_nohtml_kses($row['feed_keyword']);
   $feed_country     = wp_filter_nohtml_kses($row['feed_country']);
@@ -250,7 +258,7 @@ function indeed_job_importer_feed_import($feed_ids='',$current_time='')
    {
     $error=true;
    }
-   elseif($result1=$wpdb->get_var($wpdb->prepare("select post_title FROM $wpdb->posts 	WHERE post_title = '%s'",$item_title)))
+   elseif($result1=$wpdb->get_var($wpdb->prepare("select post_title FROM $wpdb->posts  INNER JOIN $wpdb->postmeta ON ($wpdb->posts.ID = $wpdb->postmeta.post_id) WHERE    meta_key = '_indeed_jobkey' AND meta_value='%s'",$item_id)))
    {
     $error=true;
    }  
@@ -323,7 +331,8 @@ function indeed_job_importer_feed_import($feed_ids='',$current_time='')
     {
 	 wp_set_post_terms( $post_ID, $wp_category, 'category');
      update_post_meta($post_ID,'source','indeed');	
- 	 if($item_city!='')
+ 	 update_post_meta($post_ID,'_indeed_jobkey',$item_id);	
+     if($item_city!='')
      update_post_meta($post_ID,'job_city',$item_city);	
 	 $import_count=$import_count+1;
      $import_items=$import_items+1;
@@ -333,6 +342,8 @@ function indeed_job_importer_feed_import($feed_ids='',$current_time='')
   $next_activate = indeed_job_importer_next_runtime($occurrence,$occurrence_type,current_time('mysql'));
   $query="update ".$indeed_job_importer_dbtable." set  last_import='".$import_count."',import_items='".$import_items."',last_active='".current_time('mysql')."',next_activate='".$next_activate."'  where feed_id='".$feed_id."'"; 
   $results = $wpdb->query($query);
+  if($switch)
+  restore_current_blog();
  }
 }
 endif;

@@ -3,9 +3,9 @@
 Plugin Name: Indeed Job Importer
 Plugin URI: http://wordpress.org/extend/plugins/indeed-job-importer/
 Description: Indeed Job Importer Plugin Import job from indeed according to your given parameter.,post in relevant category,makes autoblogging
-Version: 1.0.1
+Version: 1.0.2
 Author: Shambhu Prasad Patnaik
-Author URI:http://aynsoft.com/
+Author URI:http://socialcms.wordpress.com/
 */
 set_time_limit(0);
 include_once('indeed-job-importer-functions.php');
@@ -13,8 +13,8 @@ include_once('indeed-job-importer-help.php');
 if (!function_exists('indeed_job_importer_add_menus')) :
 function indeed_job_importer_add_menus()
 {
- add_menu_page('Indeed Importer', 'Indeed Importer', 8, __FILE__, 'indeed_job_importer_list');
- add_submenu_page(__FILE__, 'Add Imporder', 'Add Imporder', 8, 'indeed_job_importer','indeed_job_importer');
+ add_menu_page('Indeed Importer', 'Indeed Importer', 8, __FILE__, 'indeed_job_importer_list',plugin_dir_url(__FILE__).'/indeed_icon.gif');
+ add_submenu_page(__FILE__, 'Add Importer', 'Add Importer', 8, 'indeed_job_importer','indeed_job_importer');
  add_submenu_page(__FILE__, 'Help', 'Help', 8, 'indeed_job_importer_help','indeed_job_importer_help');
 }
 endif;
@@ -98,9 +98,12 @@ function indeed_job_importer_list()
  <br>
 	<div><h3 class="indeed_heading">Other Related Plugin</h3>
 		<ul class="indeed_help_square">
-		 <li><a href="http://socialcms.wordpress.com/contact-us/" target="_blank">Pro Indeed Job Importer (premium version)</a></li>
+		 <li><a href="http://socialcms.wordpress.com/contact-us/" target="_blank">Pro Indeed Job Importer (Premium Version)</a></li>
 		 <li><a href="http://wordpress.org/plugins/juju-job-importer/" target="_blank">Juju Job Importer</a></li>
+		 <li><a href="https://wordpress.org/plugins/beyond-job-importer/" target="_blank">Beyond Job Importer</a></li>
 		 <li><a href="http://socialcms.wordpress.com/2014/01/21/careerbuilder-job-importer/" target="_blank">CareerBuilder Job Importer</a></li>
+   		 <li><a href="http://socialcms.wordpress.com/2014/03/05/simplyhired-job-importer/" target="_blank">SimplyHired Job Importer</a></li>
+		 <li><a href="http://socialcms.wordpress.com/2014/07/02/authenticjobs-job-importer/" target="_blank">AuthenticJobs Job Importer</a></li>
 		 <li><a href="http://socialcms.wordpress.com/2014/02/07/careerjet-job-importer/" target="_blank">CareerJet Job Importer</a></li>
 		 <li><a href="http://socialcms.wordpress.com/category/job-board-2/" target="_blank">Job Board</a></li>
 		<ul>
