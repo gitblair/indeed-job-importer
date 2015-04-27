@@ -3,7 +3,7 @@ Contributors: shambhu patnaik
 Donate link: http://socialcms.wordpress.com/
 Tags: indeed job importer,indeed rss,import indeed,indeed,makes autoblogging,autoblogging,job board,auto job import,indeed api,indeed importer
 Requires at least: 2.9
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
